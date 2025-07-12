@@ -1,0 +1,51 @@
+// in this we take one vecotr and push non zeroes element in its after that we 
+// have to count for zero(0)
+// if nonzer pust in nums array and for zero we have to put in the last in nums array
+
+class Solution {
+public:
+    void moveZeroes(vector<int>& nums) {
+        int n = nums.size();
+        int count = 0;
+        vector<int> nonZero;
+
+        // Collect all non-zero elements and count zeros
+        for (int i = 0; i < n; i++) {
+            if (nums[i] != 0) {
+                nonZero.push_back(nums[i]);
+            } else {
+                count++;
+            }
+        }
+
+        // Put non-zero elements back to nums
+        int index = 0;
+        for (int i = 0; i < nonZero.size(); i++) {
+            nums[index++] = nonZero[i];
+        }
+
+        // Fill the rest with zeros
+        while (count--) {
+            nums[index++] = 0;
+        }
+    }
+};
+// second and best method
+class Solution {
+public:
+    void moveZeroes(vector<int>& nums) {
+        int n = nums.size();
+        int index = 0;  
+
+        for (int i = 0; i < n; i++) {
+            if (nums[i] != 0) {
+                nums[index++] = nums[i];
+            }
+        }
+
+        // Fill remaining positions with 0
+        while (index < n) {
+            nums[index++] = 0;
+        }
+    }
+};
