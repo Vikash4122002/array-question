@@ -1,0 +1,20 @@
+// we have to take two max element i.e. larget and sec larget elemnt from that we have to find
+// maximum product of two element
+
+class Solution {
+public:
+    int maxProduct(vector<int>& nums) {
+        int largest = 0;
+        int sec_largest = 0;
+        for(int &num : nums){
+            if(num > largest){
+                sec_largest = largest;
+                largest = num;
+            }else {
+                sec_largest = max(sec_largest,num);
+            }
+        }
+        return (largest-1)*(sec_largest-1);
+        
+    }
+};
