@@ -1,0 +1,47 @@
+// in this first i take size of array then after find all subaaray form array of k size, after that i count (key and frequency) of all elment present in the subaaray
+// after finding all element and frequency we, take for loop for moving in map to find the pairs which have one frequency
+// the element which have one frequency put into a vector i.e exactly once and then we find largest elment from exactlyonce vector and return answer
+// CORNER case if(n=k) then return max elemnt from array 
+class Solution {
+    public:
+    int largestInteger(vector<int>& nums, int k){
+    //int n = nums.size();
+    // one way to move k size subarray
+//     vector<vector<int>> result;
+//     for (int i = 0; i <= nums.size() - k; i++) {
+//     vector<int> output;
+//     for (int j = i; j < i + k; j++) {
+//         output.push_back(nums[j]);
+//     }
+//     result.push_back(output);
+// }
+    int n = nums.size();
+    vector<vector<int>> result;
+    if(n == k) return *max_element(nums.begin(),nums.end());
+    
+    
+    for(int i =0;i<=n-k;i++){
+        result.push_back(vector<int>(nums.begin()+i,nums.begin()+i+k));
+    }
+    unordered_map<int, int> mp;
+
+    for (const vector<int>& subarray : result) {
+            for (int num : subarray) {
+                 mp[num]++;
+            }
+    }
+    vector<int> exactlyonce;
+    for(const auto& pair : mp){
+        if(pair.second==1){
+            exactlyonce.push_back(pair.first);
+        }
+    }
+    if (exactlyonce.empty()) return -1;
+    int maxelement = *max_element(exactlyonce.begin(),exactlyonce.end());
+    return maxelement;
+
+
+
+    }
+};
+        
