@@ -1,0 +1,55 @@
+// approaches firsst time complexity 0 (klogn + nlogn)
+// this code from using heap  to put all array question
+// then we have to all compare all postive integer with given elemnet in array , if k != 0; 
+
+
+
+class Solution {
+public:
+    int findKthPositive(vector<int>& arr, int k) {
+        int n = arr.size();
+        priority_queue<int, vector<int>, greater<int>> pq;
+
+        // Push all elements into min-heap
+        for (int num : arr) {
+            pq.push(num);
+        }
+
+        int i = 1;
+        while (k > 0) {
+            if (!pq.empty() && i == pq.top()) {
+                pq.pop(); 
+            } else {
+                k--; 
+                if (k == 0) break;
+            }
+            i++;
+        }
+
+        return i;
+    }
+};
+// follow up question with time complexity with 0(n)
+// this is approaches leetocde want simple and good appraoches
+class Solution {
+public:
+    int findKthPositive(vector<int>& nums, int k) {
+        int num = 1;
+        int n = nums.size();
+        int i =0;
+        while(i<n && k>0){
+            if(nums[i]==num){
+                i++;
+            }
+            else{
+                k--;
+            }
+            num++;
+        }
+        while(k--){
+            num++;
+        }
+        return num-1;
+        
+    }
+};
