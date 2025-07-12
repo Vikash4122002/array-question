@@ -1,0 +1,24 @@
+// this help to find target elemnet in 0(n logn) approaches and this approaches better than linear search
+class Solution {
+public:
+    int search(vector<int>& arr, int target) {
+        int n = arr.size();
+        int left = 0;
+        int right = n-1;
+
+        while(left<= right){
+            int mid = left + (right-left)/2;
+            if(arr[mid]==target){
+                return mid;
+            }
+            else if(arr[mid]<target){
+                left =mid+1;
+            }
+            else{
+                right = mid -1;
+            }
+        }
+        return -1;
+        
+    }
+};
