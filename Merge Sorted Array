@@ -1,0 +1,38 @@
+// in this code we take vector result with size m+n,
+//now you have to take variable i and j and index 
+//put all variable is equal to 0 after that wehave to take a
+//while size of i<m && j<n
+// take if(nums[i]<nums[j]){
+//push into result with index++ and i++ else put into j And result push and oncrease j++ and index++
+// and if in some value left into i and j then put into result 
+class Solution {
+public:
+    void merge(vector<int>& nums1, int m, vector<int>& nums2, int n) {
+        vector<int> result(m + n);  
+        int i = 0;  
+        int j = 0;
+        int index = 0;
+
+        // Merge the two arrays
+        while (i < m && j < n) {
+            if (nums1[i] < nums2[j]) {
+                result[index++] = nums1[i++];
+            } else {
+                result[index++] = nums2[j++];
+            }
+        }
+        while (i < m) {
+            result[index++] = nums1[i++];
+        }
+
+        
+        while (j < n) {
+            result[index++] = nums2[j++];
+        }
+
+        
+        for (int k = 0; k < m + n; k++) {
+            nums1[k] = result[k];
+        }
+    }
+};
