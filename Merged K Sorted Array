@@ -1,0 +1,44 @@
+
+//here we used two sorted array and then we sort and return as merged after that we merged another array 
+//with size of aaray
+class Solution {
+  public:
+
+  
+    vector<int> mergedtwosort(vector<int>& a, vector<int>& b) {
+        vector<int> merged;
+        int i = 0, j = 0;
+
+        while (i < a.size() && j < b.size()) {
+            if (a[i] < b[j]) {
+                merged.push_back(a[i++]);
+            } else {
+                merged.push_back(b[j++]);
+            }
+        }
+
+        // Add remaining elements
+        while (i < a.size()) {
+            merged.push_back(a[i++]);
+        }
+
+        while (j < b.size()) {
+            merged.push_back(b[j++]);
+        }
+
+        return merged;
+    }
+
+    
+    vector<int> mergeKArrays(vector<vector<int>> arr, int K) {
+        if (arr.size() == 0) return {};
+
+        vector<int> result = arr[0];
+
+        for (int i = 1; i < arr.size(); i++) {
+            result = mergedtwosort(result, arr[i]);
+        }
+
+        return result;
+    }
+};
